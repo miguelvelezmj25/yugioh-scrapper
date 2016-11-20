@@ -7,7 +7,9 @@ require 'open-uri'
 @types = { 'normal monster' => 'Monster', 'effect monster' => 'Monster', 'gemini monster' => 'Monster',
            'xyz monster' => 'XYZ', 'pendulum monster' => 'Pendulum', 'fusion monster' => 'Fusion',
            'synchro monster'=> 'Synchro', 'token monster'=> 'Token', 'ritual monster' => 'Ritual',
-           'trap card' => 'Trap', 'spell card' => 'Spell', 'tuner monster' => 'Monster'}
+           'trap card' => 'Trap', 'spell card' => 'Spell', 'tuner monster' => 'Monster', 'union monster' => 'Monster',
+           'flip monster' => 'Monster'
+}
 
 @special_types = {'slifer the sky dragon' => 'Divine', 'obelisk the tormentor' => 'Divine',
                   'the winged dragon of ra' => 'Divine'}
@@ -42,7 +44,7 @@ end
 FILE_NAME = 'query.sql'
 
 File.open(FILE_NAME, 'w')
-url = 'http://yugioh.wikia.com/wiki/Set_Card_Lists:Legendary_Decks_II_(TCG-EN)'
+url = 'http://yugioh.wikia.com/wiki/Set_Card_Lists:Realm_of_Light_Structure_Deck_(TCG-EN)'
 data = Nokogiri::HTML(open(url))
 table = data.css('table.card-list')
 rows = table.css('tr')
