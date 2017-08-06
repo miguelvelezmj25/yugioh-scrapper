@@ -41,15 +41,19 @@ def resolve_type(type, name)
   end
 end
 
+if ARGV.empty?
+  raise ArgumentError.new('You need to pass the website to scrape')
+end
+
 FILE_NAME = 'query.sql'
 
 File.open(FILE_NAME, 'w')
-url = 'http://yugioh.wikia.com/wiki/Set_Card_Lists:Structure_Deck:_Yugi_Muto_(TCG-EN)'
+url = ARGV[0]
 data = Nokogiri::HTML(open(url))
 table = data.css('table.card-list')
 rows = table.css('tr')
 
-puts (rows.length - 1)
+puts 'Card count: ' + (rows.length - 1).to_s
 rows.each do |row|
 	columns = row.css('td')
 
