@@ -44,12 +44,12 @@ end
 FILE_NAME = 'query.sql'
 
 File.open(FILE_NAME, 'w')
-url = 'http://yugioh.wikia.com/wiki/Set_Card_Lists:Realm_of_Light_Structure_Deck_(TCG-EN)'
+url = 'http://yugioh.wikia.com/wiki/Set_Card_Lists:Structure_Deck:_Yugi_Muto_(TCG-EN)'
 data = Nokogiri::HTML(open(url))
 table = data.css('table.card-list')
 rows = table.css('tr')
 
-puts rows.length
+puts (rows.length - 1)
 rows.each do |row|
 	columns = row.css('td')
 
