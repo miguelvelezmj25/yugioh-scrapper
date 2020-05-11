@@ -44,6 +44,8 @@ def resolve_type(type, name)
 
   if @special_types.key?(name)
     @special_types[name]
+  elsif type.eql?("token")
+    "Token"
   else
     words = type.strip.split(" ")
     type = words[-2] + " " + words[-1]
@@ -83,9 +85,12 @@ rows.each do |row|
 
   name = columns[1].text.strip
 
-  next if name == '"Token"'
+  string += if name.include? "\""
+    "" + name.to_s + ", "
+  else
+    "\"" + name.to_s + "\", "
+  end
 
-  string += name.to_s + ", "
   string += "'TODO', "
   string += "'#{resolve_rarity(columns[2].text.strip.to_s)}', "
   string += "'#{resolve_type(columns[3].text.strip, name)}'"
